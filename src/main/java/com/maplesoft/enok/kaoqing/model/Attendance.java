@@ -99,7 +99,24 @@ public class Attendance {
     }
 
     public float getLunchTime() {
-        return lunchTime;
+        if (getWorkTime() == null || getWorkTime().indexOf(":") == -1 || getOffworkTime() == null || getOffworkTime().indexOf(":") == -1) {
+            return 0;
+        }
+
+        // 在12:20点前打卡离开或在12:20点后打卡上班的，不扣减午餐时间。
+
+        Clock workClock = new Clock(getWorkTime());
+        Clock offworkClock = new Clock(getOffworkTime());
+        int overtime = 12 * 60 + 20;    // 12:20
+        // 12:20之后上班
+        if (workClock.getHour() * 60 + workClock.getMinute() >= overtime) {
+            return 0;
+        }
+        // 12:20之前下班
+        if (offworkClock.getHour() * 60 + offworkClock.getMinute() <= overtime) {
+            return 0;
+        }
+        return 1;
     }
 
     public void setLunchTime(float lunchTime) {

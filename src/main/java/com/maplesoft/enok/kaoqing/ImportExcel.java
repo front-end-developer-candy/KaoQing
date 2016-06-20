@@ -192,9 +192,7 @@ public class ImportExcel {
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("J"), row, at.getOvertimeWork() + "", centerFormat));
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("K"), row, at.getMemo(), centerFormat));
             }
-            row++;
-            row++;
-            row++;
+            row += 4;
         }
         outbook.write();
         outbook.close();
