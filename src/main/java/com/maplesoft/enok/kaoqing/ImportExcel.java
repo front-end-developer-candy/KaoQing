@@ -180,6 +180,7 @@ public class ImportExcel {
             sheet.addCell(new Label(CellReferenceHelper.getColumn("K"), row, "备注", centerFormat));
             for (Attendance at : kq.getAttendances()) {
                 row++;
+                at.calculate();
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("A"), row, at.getDate(), centerFormat));
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("B"), row, at.getWeek(), centerFormat));
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("C"), row, at.getWorkTime(), centerFormat));

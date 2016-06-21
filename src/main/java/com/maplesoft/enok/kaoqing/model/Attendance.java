@@ -71,10 +71,7 @@ public class Attendance {
     }
 
     public String getTimeDifference() {
-        if (workTime != null && offworkTime != null && workTime.indexOf(":") != -1 && offworkTime.indexOf(":") != -1) {
-            return Clock.diff(offworkTime, workTime).toString();
-        }
-        return "";
+        return timeDifference == null ? "" : timeDifference;
     }
 
     public void setTimeDifference(String timeDifference) {
@@ -82,16 +79,7 @@ public class Attendance {
     }
 
     public float getTimeCount() {
-        String timeStr = getTimeDifference();
-        if (timeStr == null || timeStr.indexOf(":") == -1) return 0;
-        Clock clock = new Clock(timeStr);
-        float time = clock.getHour();
-        if (clock.getMinute() >= 50) {
-            time += 1;
-        } else if (clock.getMinute() >= 20) {
-            time += 0.5;
-        }
-        return time;
+        return timeCount;
     }
 
     public void setTimeCount(float timeCount) {
@@ -99,24 +87,7 @@ public class Attendance {
     }
 
     public float getLunchTime() {
-        if (getWorkTime() == null || getWorkTime().indexOf(":") == -1 || getOffworkTime() == null || getOffworkTime().indexOf(":") == -1) {
-            return 0;
-        }
-
-        // 在12:20点前打卡离开或在12:20点后打卡上班的，不扣减午餐时间。
-
-        Clock workClock = new Clock(getWorkTime());
-        Clock offworkClock = new Clock(getOffworkTime());
-        int overtime = 12 * 60 + 20;    // 12:20
-        // 12:20之后上班
-        if (workClock.getHour() * 60 + workClock.getMinute() >= overtime) {
-            return 0;
-        }
-        // 12:20之前下班
-        if (offworkClock.getHour() * 60 + offworkClock.getMinute() <= overtime) {
-            return 0;
-        }
-        return 1;
+        return lunchTime;
     }
 
     public void setLunchTime(float lunchTime) {
@@ -124,6 +95,9 @@ public class Attendance {
     }
 
     public float getActualWorkingHours() {
+        timeCount = getTimeCount();
+        lunchTime = getLunchTime();
+        actualWorkingHours = timeCount - lunchTime;
         return actualWorkingHours;
     }
 
@@ -132,7 +106,14 @@ public class Attendance {
     }
 
     public float getMealSupplement() {
-        return mealSupplement;
+        //总工时-午餐时间< 5    餐补为0
+        //总工时-午餐时间>= 5  and  总工时-午餐时间<10    餐补为 11
+        //总工时-午餐时间>= 10  and  总工时-午餐时间<15   餐补为 22
+        timeCount = getTimeCount();
+        lunchTime = getLunchTime();
+        if (timeCount - lunchTime >= 5 && timeCount - lunchTime < 10) return 11;
+        if (timeCount - lunchTime >= 10 && timeCount - lunchTime < 15) return 22;
+        return 0;
     }
 
     public void setMealSupplement(float mealSupplement) {
@@ -153,5 +134,73 @@ public class Attendance {
 
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    // 计算
+    public void calculate() {
+        // 计算时间差
+        if (workTime != null && offworkTime != null && workTime.indexOf(":") != -1 && offworkTime.indexOf(":") != -1) {
+            timeDifference = Clock.diff(offworkTime, workTime).toString();
+        }
+
+        // 计算工作总时
+        if (timeDifference != null && timeDifference.indexOf(":") > -1) {
+            Clock clock = new Clock(timeDifference);
+            timeCount = clock.getHour();
+            if (clock.getMinute() >= 50) {
+                timeCount += 1;
+            } else if (clock.getMinute() >= 20) {
+                timeCount += 0.5;
+            }
+        }
+
+        // 计算用餐时间
+        if (null != timeDifference) {
+            // 在12:20点前打卡离开或在12:20点后打卡上班的，不扣减午餐时间。
+            Clock workClock = new Clock(getWorkTime());
+            Clock offworkClock = new Clock(getOffworkTime());
+            int overtime = 12 * 60 + 20;    // 12:20
+            int afterovertime = 20 * 60;    // 20:00
+
+            // 12:20之前下班
+            if (offworkClock.getHour() * 60 + offworkClock.getMinute() <= overtime) {
+                lunchTime = 0;
+            } else
+                // 上班时间<12:20  and  下班时间<=20:00    用餐时间为 1
+                if (workClock.getHour() * 60 + workClock.getMinute() < overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() <= afterovertime) {
+                    lunchTime = 1;
+                } else
+                    // 上班时间<12:20  and  下班时间>20:00    用餐时间为 1.5
+                    if (workClock.getHour() * 60 + workClock.getMinute() < overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() > afterovertime) {
+                        lunchTime = 1.5f;
+                    } else
+
+                        // 上班时间>=12:20 and  下班时间<=20:00    用餐时间为 0
+                        if (workClock.getHour() * 60 + workClock.getMinute() >= overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() <= afterovertime) {
+                            lunchTime = 0;
+                        } else
+                            // 上班时间>=12:20 and  下班时间>20:00     用餐时间为 0.5
+                            if (workClock.getHour() * 60 + workClock.getMinute() >= overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() > afterovertime) {
+                                lunchTime = 0.5f;
+                            }
+        }
+
+        // 计算餐补
+        //总工时-午餐时间< 5    餐补为0
+        //总工时-午餐时间>= 5  and  总工时-午餐时间<10    餐补为 11
+        //总工时-午餐时间>= 10  and  总工时-午餐时间<15   餐补为 22
+        if (timeCount - lunchTime >= 5 && timeCount - lunchTime < 10) mealSupplement = 11;
+        if (timeCount - lunchTime >= 10 && timeCount - lunchTime < 15) mealSupplement = 22;
+
+        // 计算实际工时
+        // 总工时-午餐时间<=8    为总工时-午餐时间
+        // 总工时-午餐时间>8    为8
+        if (timeCount - lunchTime <= 8) actualWorkingHours = timeCount - lunchTime;
+        else if (timeCount - lunchTime > 8) actualWorkingHours = 8;
+
+        // 计算加班工时
+        // 加班工时：如果实际工时>8,那么加班工时=总工时-午餐时间-8
+        if (timeCount - lunchTime > 8) overtimeWork = timeCount - lunchTime - 8;
+
     }
 }
