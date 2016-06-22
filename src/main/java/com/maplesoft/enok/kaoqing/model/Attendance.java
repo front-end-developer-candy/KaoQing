@@ -95,9 +95,6 @@ public class Attendance {
     }
 
     public float getActualWorkingHours() {
-        timeCount = getTimeCount();
-        lunchTime = getLunchTime();
-        actualWorkingHours = timeCount - lunchTime;
         return actualWorkingHours;
     }
 
