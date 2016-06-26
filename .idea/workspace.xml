@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06086fb9-90fe-42ee-b9c6-5866e76fee4f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out.xls" afterPath="$PROJECT_DIR$/out.xls" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="KaoQing.iws" />
@@ -1090,7 +1089,7 @@
       <workItem from="1466927254204" duration="816000" />
       <workItem from="1466938073553" duration="611000" />
       <workItem from="1466942234524" duration="309000" />
-      <workItem from="1466943435392" duration="7791000" />
+      <workItem from="1466943435392" duration="7803000" />
     </task>
     <task id="LOCAL-00001" summary="modiyf">
       <created>1466443239778</created>
@@ -1120,7 +1119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466881718611</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modify">
+      <created>1466967180937</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1466967180937</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1156,7 +1162,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60565000" />
+    <option name="totallyTimeSpent" value="60577000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1213,7 +1219,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modiyf" />
-    <option name="LAST_COMMIT_MESSAGE" value="modiyf" />
+    <MESSAGE value="modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
