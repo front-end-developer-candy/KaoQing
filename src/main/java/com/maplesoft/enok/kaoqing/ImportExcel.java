@@ -14,6 +14,8 @@ import jxl.format.BorderLineStyle;
 import jxl.read.biff.BiffException;
 import jxl.write.*;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -26,7 +28,8 @@ public class ImportExcel {
 
     private WritableWorkbook outbook;
 
-    public void load(File file) throws IOException, BiffException {
+    public boolean load(File file) throws IOException, BiffException {
+        if (file == null) return false;
         workbook = Workbook.getWorkbook(file);
         sheets = new ArrayList<Sheet>(Arrays.asList(workbook.getSheets()));
         // 移除前两个Sheet
@@ -35,6 +38,7 @@ public class ImportExcel {
         for (Sheet sheet : sheets) {
             dealSheet(sheet);
         }
+        return true;
     }
 
     public String getText(Sheet sheet, String cell) {
@@ -130,6 +134,7 @@ public class ImportExcel {
     }
 
     public void output(File file) throws IOException, BiffException, WriteException {
+        if (file == null) return;
         int row = 2;
         outbook = Workbook.createWorkbook(file);
         WritableSheet sheet = outbook.createSheet("考勤统计", 0);
@@ -199,14 +204,40 @@ public class ImportExcel {
         outbook.close();
     }
 
+    public static File chooseFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) return true;
+                if (f.getName().toLowerCase().endsWith(".xls")) {
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public String getDescription() {
+                return ".xls";
+            }
+        });
+        fileChooser.showOpenDialog(null);
+        return fileChooser.getSelectedFile();
+    }
+
     public static void main(String[] args) throws IOException, BiffException, WriteException {
-        File in = new File("C:\\in.xls");
-        File out = new File("C:\\out.xls");
-        ImportExcel excel = new ImportExcel();
-        excel.load(in);
-        excel.output(out);
+//        File in = new File("C:\\in.xls");
+//        File out = new File("C:\\out.xls");
+//        ImportExcel excel = new ImportExcel();
+//        excel.load(in);
+//        excel.output(out);
 
-
+        ImportExcel importExcel = new ImportExcel();
+        if (importExcel.load(chooseFile())) {
+            importExcel.output(chooseFile());
+        }
+        System.exit(0);
     }
 
 }
