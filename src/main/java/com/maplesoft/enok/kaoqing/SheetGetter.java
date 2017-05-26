@@ -103,5 +103,12 @@ class WorkTime {
 
     public void setOutTime(String outTime) {
         this.outTime = outTime;
+        if (this.outTime != null && this.outTime.length() > 0) {
+            String[] s = this.outTime.split(":");
+            if (Integer.parseInt(s[0]) < 6) {
+                System.out.println("下班时间小于6点钟" + this.outTime);
+                this.outTime = (Integer.parseInt(s[0]) + 24) + ":" + s[1];
+            }
+        }
     }
 }

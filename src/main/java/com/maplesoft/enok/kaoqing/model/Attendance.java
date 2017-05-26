@@ -165,7 +165,7 @@ public class Attendance {
             } else
                 // 上班时间<12:20  and  下班时间<=20:00    用餐时间为 1
                 if (workClock.getHour() * 60 + workClock.getMinute() < overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() <= afterovertime) {
-                    lunchTime = 1;
+                    lunchTime = 1.0f;
                 } else
                     // 上班时间<12:20  and  下班时间>20:00    用餐时间为 1.5
                     if (workClock.getHour() * 60 + workClock.getMinute() < overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() > afterovertime) {

@@ -105,6 +105,7 @@ public class ImportExcel {
                 attendance.setWorkTime(workTime.getInTime());
                 attendance.setOffworkTime(workTime.getOutTime());
             }
+
             attendances.add(attendance);
         }
 
