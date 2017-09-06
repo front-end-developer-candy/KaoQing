@@ -2,12 +2,10 @@ package com.maplesoft.enok.kaoqing;
 
 
 import com.maplesoft.enok.kaoqing.model.Attendance;
-import com.maplesoft.enok.kaoqing.model.Clock;
 import com.maplesoft.enok.kaoqing.model.Kaoqing;
 import jxl.CellReferenceHelper;
 import jxl.Sheet;
 import jxl.Workbook;
-import jxl.format.*;
 import jxl.format.Alignment;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
@@ -18,7 +16,9 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ImportExcel {
 
@@ -192,11 +192,32 @@ public class ImportExcel {
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("C"), row, at.getWorkTime(), centerFormat));
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("D"), row, at.getOffworkTime(), centerFormat));
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("E"), row, at.getTimeDifference() + "", centerFormat));
-                sheet.addCell(new Label(CellReferenceHelper.getColumn("F"), row, at.getTimeCount() + "", centerFormat));
-                sheet.addCell(new Label(CellReferenceHelper.getColumn("G"), row, at.getLunchTime() + "", centerFormat));
-                sheet.addCell(new Label(CellReferenceHelper.getColumn("H"), row, at.getActualWorkingHours() + "", centerFormat));
-                sheet.addCell(new Label(CellReferenceHelper.getColumn("I"), row, at.getMealSupplement() + "", centerFormat));
-                sheet.addCell(new Label(CellReferenceHelper.getColumn("J"), row, at.getOvertimeWork() + "", centerFormat));
+
+                if (at.getTimeCount() > 0)
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("F"), row, at.getTimeCount() + "", centerFormat));
+                else
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("F"), row, "", centerFormat));
+
+                if (at.getLunchTime() > 0)
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("G"), row, at.getLunchTime() + "", centerFormat));
+                else
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("G"), row, "", centerFormat));
+
+                if (at.getActualWorkingHours() > 0)
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("H"), row, at.getActualWorkingHours() + "", centerFormat));
+                else
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("H"), row, "", centerFormat));
+
+                if (at.getMealSupplement() > 0)
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("I"), row, at.getMealSupplement() + "", centerFormat));
+                else
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("I"), row, "", centerFormat));
+
+                if (at.getOvertimeWork() > 0)
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("J"), row, at.getOvertimeWork() + "", centerFormat));
+                else
+                    sheet.addCell(new Label(CellReferenceHelper.getColumn("J"), row, "", centerFormat));
+
                 sheet.addCell(new Label(CellReferenceHelper.getColumn("K"), row, at.getMemo(), centerFormat));
             }
             row += 4;

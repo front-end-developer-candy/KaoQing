@@ -153,33 +153,28 @@ public class Attendance {
 
         // 计算用餐时间
         if (null != timeDifference) {
-            // 在12:20点前打卡离开或在12:20点后打卡上班的，不扣减午餐时间。
+            // 在12:20点前打卡离开或在12:30点后打卡上班的，不扣减午餐时间。
             Clock workClock = new Clock(getWorkTime());
             Clock offworkClock = new Clock(getOffworkTime());
-            int overtime = 12 * 60 + 20;    // 12:20
+            int overtime = 12 * 60 + 30;    // 12:30
             int afterovertime = 20 * 60;    // 20:00
 
-            // 12:20之前下班
-            if (offworkClock.getHour() * 60 + offworkClock.getMinute() <= overtime) {
-                lunchTime = 0;
-            } else
-                // 上班时间<12:20  and  下班时间<=20:00    用餐时间为 1
-                if (workClock.getHour() * 60 + workClock.getMinute() < overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() <= afterovertime) {
-                    lunchTime = 1.0f;
-                } else
-                    // 上班时间<12:20  and  下班时间>20:00    用餐时间为 1.5
-                    if (workClock.getHour() * 60 + workClock.getMinute() < overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() > afterovertime) {
-                        lunchTime = 1.5f;
-                    } else
+            // 夏季
+            float wcsj = 1.5f; // 午餐时间
 
-                        // 上班时间>=12:20 and  下班时间<=20:00    用餐时间为 0
-                        if (workClock.getHour() * 60 + workClock.getMinute() >= overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() <= afterovertime) {
-                            lunchTime = 0;
-                        } else
-                            // 上班时间>=12:20 and  下班时间>20:00     用餐时间为 0.5
-                            if (workClock.getHour() * 60 + workClock.getMinute() >= overtime && offworkClock.getHour() * 60 + offworkClock.getMinute() > afterovertime) {
-                                lunchTime = 0.5f;
-                            }
+            // 冬季
+            // float wcsj = 1.0f; // 午餐时间
+
+            // 上班时间 < 12:30 and 总工时 > 午餐时间 ，用餐时间加上午餐时间
+            if (workClock.getHour() * 60 + workClock.getMinute() < overtime && timeCount > wcsj) {
+                lunchTime += wcsj;
+            }
+
+            // 下班时间 > 20:00 ，用餐时间加上晚餐时间
+            if (offworkClock.getHour() * 60 + offworkClock.getMinute() > afterovertime) {
+                lunchTime += 0.5f;
+            }
+
         }
 
         // 计算餐补
