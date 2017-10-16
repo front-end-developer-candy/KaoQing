@@ -160,13 +160,13 @@ public class Attendance {
             int afterovertime = 20 * 60;    // 20:00
 
             // 夏季
-            float wcsj = 1.5f; // 午餐时间
+            // float wcsj = 1.5f; // 午餐时间
 
             // 冬季
-            // float wcsj = 1.0f; // 午餐时间
+            float wcsj = 1.0f; // 午餐时间
 
             // 上班时间 < 12:30 and 总工时 > 午餐时间 ，用餐时间加上午餐时间
-            if (workClock.getHour() * 60 + workClock.getMinute() < overtime && timeCount > wcsj) {
+            if (workClock.getHour() * 60 + workClock.getMinute() < overtime && timeCount > wcsj && offworkClock.getHour() * 60 + offworkClock.getMinute() > overtime) {
                 lunchTime += wcsj;
             }
 

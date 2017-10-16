@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06086fb9-90fe-42ee-b9c6-5866e76fee4f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/KaoQing_jar/考勤-冬季作息.jar" afterPath="$PROJECT_DIR$/out/artifacts/KaoQing_jar/考勤-冬季作息.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/KaoQing_jar/考勤-夏季作息.jar" afterPath="$PROJECT_DIR$/out/artifacts/KaoQing_jar/考勤-夏季作息.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/ImportExcel.java" afterPath="$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/ImportExcel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/model/Attendance.java" afterPath="$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/model/Attendance.java" />
     </list>
     <ignored path="KaoQing.iws" />
@@ -77,12 +78,9 @@
       <file leaf-file-name="Attendance.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/model/Attendance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="162" column="12" selection-start-line="162" selection-start-column="12" selection-end-line="162" selection-end-column="12" />
-              <folding>
-                <element signature="e#1179#1180#0" expanded="true" />
-                <element signature="e#1246#1247#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="107">
+              <caret line="154" column="37" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,7 +88,7 @@
       <file leaf-file-name="ImportExcel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/ImportExcel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-201">
+            <state relative-caret-position="2860">
               <caret line="149" column="9" selection-start-line="149" selection-start-column="9" selection-end-line="149" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -242,6 +240,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -340,7 +339,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
@@ -938,7 +936,9 @@
       <workItem from="1495713935938" duration="8602000" />
       <workItem from="1503972347529" duration="360000" />
       <workItem from="1503973275442" duration="16000" />
-      <workItem from="1504707046314" duration="2516000" />
+      <workItem from="1504707046314" duration="2736000" />
+      <workItem from="1505102050242" duration="66000" />
+      <workItem from="1508155027134" duration="911000" />
     </task>
     <task id="LOCAL-00001" summary="modiyf">
       <created>1466443239778</created>
@@ -1011,7 +1011,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77788000" />
+    <option name="totallyTimeSpent" value="78985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1024,11 +1024,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32502708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32502708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1214,7 +1214,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/ImportExcel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-201">
+        <state relative-caret-position="2860">
           <caret line="149" column="9" selection-start-line="149" selection-start-column="9" selection-end-line="149" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1224,12 +1224,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/maplesoft/enok/kaoqing/model/Attendance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="162" column="12" selection-start-line="162" selection-start-column="12" selection-end-line="162" selection-end-column="12" />
-          <folding>
-            <element signature="e#1179#1180#0" expanded="true" />
-            <element signature="e#1246#1247#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="107">
+          <caret line="154" column="37" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
