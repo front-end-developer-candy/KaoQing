@@ -170,7 +170,7 @@ public class Attendance {
                 lunchTime += wcsj;
             }
 
-            // 下班时间 >= 20:00 ，用餐时间加上晚餐时间
+            // 下班时间 >= 20:00 ，用餐时间加上晚餐时间（8点整计算在内）
             if (offworkClock.getHour() * 60 + offworkClock.getMinute() >= afterovertime) {
                 lunchTime += 0.5f;
             }
