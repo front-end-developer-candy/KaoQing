@@ -156,7 +156,7 @@ public class Attendance {
             // 在12:20点前打卡离开或在12:30点后打卡上班的，不扣减午餐时间。
             Clock workClock = new Clock(getWorkTime());
             Clock offworkClock = new Clock(getOffworkTime());
-            int overtime = 12 * 60 + 30;    // 12:30
+            int overtime = 12 * 60 + 50;    // 12:50
             int afterovertime = 20 * 60;    // 20:00
 
             // 夏季
